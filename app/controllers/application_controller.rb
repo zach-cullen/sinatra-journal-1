@@ -6,12 +6,11 @@ class ApplicationController < Sinatra::Base
     set :public_dir, "public"
     enable :sessions
     set :session_secret, "secure_this_session"
+    register Sinatra::Flash
   end
 
   get '/' do
     erb :index
   end
-
-  
 
 end
