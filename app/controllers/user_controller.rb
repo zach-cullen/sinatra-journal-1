@@ -7,20 +7,19 @@ class UsersController < ApplicationController
 
   post '/signup' do
     @user_info = params[:user]
-
     if !user_info_format_valid?(@user_info)
       #use helper methods to validate formatting
       redirect '/signup'
     elsif !!User.find_by(username: @user_info[:username]) || !!User.find_by(email: @user_info[:email])
       #redirect to login if username or email not unique
       flash[:alert] = "User already exists with this username or email."
-      redirect '/login'
     else
-      #create new use
+      #create new user
+      User.create(@user_info)
+      flash[:alert] = "Success! Please log in to continue."
     end
 
-    #send to login
-    flash[:alert] = "Success! Please log in to continue."
+    #send to login 
     redirect '/login'
   end
 
