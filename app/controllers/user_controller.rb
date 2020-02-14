@@ -1,4 +1,4 @@
-class UserController < Sinatra::Base
+class UsersController < Sinatra::Base
 
 
   get '/signup' do 
