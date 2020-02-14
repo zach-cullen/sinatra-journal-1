@@ -1,7 +1,8 @@
-class UsersController < Sinatra::Base
-
+class UsersController < ApplicationController
 
   get '/signup' do 
+    #render signup form
+    erb :signup
     #create new user
     #user entered username w/ only acceptable characters
     #user entered email
@@ -19,7 +20,7 @@ class UsersController < Sinatra::Base
   end
 
   get '/user/:slug' do
-
+    #load user home page
   end
 
   get '/logout' do
