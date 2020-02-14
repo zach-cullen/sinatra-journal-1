@@ -11,14 +11,10 @@ class UsersController < ApplicationController
     if !user_info_format_valid?(@user_info)
       #use helper methods to validate formatting and return flash messages
       redirect '/signup'
-    end
-
-    if !!User.find_by(username: @user_info[:username])
-      flash.now[:notice] = "user already exists with this username"
-    elsif !!User.find_by(email: @user_info[:email])
-      flash.now[:notice] = "user already exists with this email"
+    elsif !!User.find_by(username: @user_info[:username]) || !!User.find_by(email: @user_info[:email])
+      flash.now[:notice] = "user already exists with this email or username"
     else
-      flash.now[:notice] = "user is unique"
+      flash.now[:notice] = "user is unique and info is good"
     end
 
 
