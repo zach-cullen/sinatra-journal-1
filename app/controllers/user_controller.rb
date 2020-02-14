@@ -3,12 +3,17 @@ class UsersController < ApplicationController
   get '/signup' do 
     #render signup form
     erb :signup
-    #create new user
+
+  end
+
+  post '/signup' do
+    binding.pry
     #user entered username w/ only acceptable characters
-    #user entered email
+    #user entered valid email
     #user entered password
     #username is unique
     #email is unique
+    #create new user
     #send to login
   end
 
