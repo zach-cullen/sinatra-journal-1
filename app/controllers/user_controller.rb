@@ -9,20 +9,23 @@ class UsersController < ApplicationController
     @user_info = params[:user]
 
     if !user_info_format_valid?(@user_info)
-      #use helper methods to validate formatting and return flash messages
+      #use helper methods to validate formatting
       redirect '/signup'
     elsif !!User.find_by(username: @user_info[:username]) || !!User.find_by(email: @user_info[:email])
-      flash.now[:notice] = "user already exists with this email or username"
+      #redirect to login if username or email not unique
+      flash[:alert] = "User already exists with this username or email."
+      redirect '/login'
     else
-      flash.now[:notice] = "user is unique and info is good"
+      #create new use
     end
 
-
-    #create new user
     #send to login
+    flash[:alert] = "Success! Please log in to continue."
+    redirect '/login'
   end
 
   get '/login' do
+    erb :login
     #user email is in database
     #user password matches 
     #create session user_id
