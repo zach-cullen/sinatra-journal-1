@@ -36,7 +36,8 @@ class UsersController < ApplicationController
       flash.now[:alert] = "Found user!"
     else
       #if user is not found, ask to try again
-      flash.now[:alert] = "No user found with that email address, please sign up or try again."
+      flash[:alert] = "No user found with that email address, please sign up or try again."
+      redirect '/login'
     end
 
     #user password matches 
