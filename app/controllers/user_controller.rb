@@ -7,27 +7,21 @@ class UsersController < ApplicationController
 
   post '/signup' do
     @user_info = params[:user]
-    #user entered a properly formatted username
 
     if !user_info_format_valid?(@user_info)
+      #use helper methods to validate formatting and return flash messages
       redirect '/signup'
-    # if !username_format_valid?(@user_info[:username])
-    #   redirect '/signup'
-    # elsif !password_format_valid?(@user_info[:password])
-    #   redirect '/signup'
-    # elsif !email_format_valid?@user_info[:email]
-    #   redirect '/signup'
+    end
+
+    if !!User.find_by(username: @user_info[:username])
+      flash.now[:notice] = "user already exists with this username"
+    elsif !!User.find_by(email: @user_info[:email])
+      flash.now[:notice] = "user already exists with this email"
     else
-      flash.now[:notice] = "looks good"
+      flash.now[:notice] = "user is unique"
     end
 
 
-    #user entered a properly formatted password
-
-    #user entered valid email
-    #user entered password
-    #username is unique
-    #email is unique
     #create new user
     #send to login
   end
@@ -92,11 +86,7 @@ class UsersController < ApplicationController
 
     def user_info_format_valid?(user_info)
       valid_format = true
-      if !username_format_valid?(user_info[:username])
-        valid_format = false
-      elsif !email_format_valid?(user_info[:email])
-        valid_format = false
-      elsif !password_format_valid?(user_info[:password])
+      if !username_format_valid?(user_info[:username]) || !email_format_valid?(user_info[:email]) || !password_format_valid?(user_info[:password])
         valid_format = false
       end 
       valid_format
