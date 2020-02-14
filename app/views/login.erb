@@ -1,4 +1,21 @@
 <h1>Log In</h1>
 
+<form method="POST" action="/login" id="login_form">
+<label for="email">Email: </label>
+<br>
+<input type="text" id="email" name="user[email]">
+<br>
+<label for="password">Password: </label>
+<br>
+<input type="text" id="password" name="user[password]">
+<br>
+<input type="submit" id="submit" value="LOG IN">
+</form>
+
+<br>
+<p><%= flash[:alert] %></p>
+
+<p><a href="/">Home</a></p>
+
 <p><%= flash[:alert] %></p>
 

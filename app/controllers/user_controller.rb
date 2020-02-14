@@ -25,7 +25,20 @@ class UsersController < ApplicationController
 
   get '/login' do
     erb :login
-    #user email is in database
+  end
+
+  post '/login' do
+    #find user if email is in database
+    @user = User.find_by(email: params[:user][:email])
+
+    if !!@user
+      #if user is found, validate password and log in
+      flash.now[:alert] = "Found user!"
+    else
+      #if user is not found, ask to try again
+      flash.now[:alert] = "No user found with that email address, please sign up or try again."
+    end
+
     #user password matches 
     #create session user_id
     #send to user/:slug
