@@ -13,7 +13,3 @@ ActiveRecord::Base.establish_connection(
 
 #load all app files NOTE: gem does not respect order, require dependencies first
 require_all 'app'
-
-#mount controllers
-use UsersController
-run ApplicationController

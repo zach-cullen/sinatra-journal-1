@@ -8,4 +8,6 @@ end
 use Rack::MethodOverride
 
 #load child controllers and run parent controller
+#mount controllers
+use UsersController
 run ApplicationController
