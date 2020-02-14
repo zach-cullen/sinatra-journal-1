@@ -3,7 +3,7 @@ class UserController < Sinatra::Base
 
   get '/signup' do 
     #create new user
-    #user entered username
+    #user entered username w/ only acceptable characters
     #user entered email
     #user entered password
     #username is unique
