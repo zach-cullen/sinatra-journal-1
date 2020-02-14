@@ -7,12 +7,18 @@ class UsersController < ApplicationController
 
   post '/signup' do
     @user_info = params[:user]
+    #user entered a properly formatted username
     if !username_format_valid?(@user_info[:username])
       redirect '/signup'
+    elsif !password_format_valid?(@user_info[:password])
+      redirect '/signup'
     else
-      flash[:notice] = "username looks good"
+      flash.now[:notice] = "looks good"
     end
-    #user entered username w/ only acceptable characters
+
+
+    #user entered a properly formatted password
+
     #user entered valid email
     #user entered password
     #username is unique
@@ -48,12 +54,12 @@ class UsersController < ApplicationController
   helpers do 
     def username_format_valid?(string)
       valid_format = true
-      if string.length <= 6
+      if string.length < 6
         valid_format = false
         flash[:alert] = "username must be at least 6 characters"
       elsif /\A[a-zA-Z0-9-]*\z/.match(string).to_s != string
         valid_format = false
-        flash[:alert] = "username may only contain letters, numbers, and hyphens"
+        flash.now = "username may only contain letters, numbers, and hyphens"
       end
       valid_format
     end
@@ -63,7 +69,15 @@ class UsersController < ApplicationController
     end
 
     def password_format_valid?(string)
-
+      valid_format = true
+      if string.length < 7
+        valid_format = false
+        flash[:alert] = "password must be at least 7 characters"
+      elsif string.include?(" ")
+        valid_format = false
+        flash[:alert] = "password may not contain spaces"
+      end
+      valid_format
     end
 
 
