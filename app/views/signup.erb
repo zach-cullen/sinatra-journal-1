@@ -1,5 +1,7 @@
 <h1>Sign Up</h1>
 
+
+
 <form method="POST" action="/signup" id="signup_form">
 <label for="username">Username: </label>
 <br>
@@ -15,5 +17,8 @@
 <br>
 <input type="submit" id="submit" value="SIGN UP">
 </form>
+
+<br>
+<p><%= flash[:alert] %></p>
 
 <p><a href="/">Home</a></p>
