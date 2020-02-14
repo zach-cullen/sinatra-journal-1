@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if !username_format_valid?(@user_info[:username])
       redirect '/signup'
     else
-      flash[:alert] = "username looks good."
+      flash[:notice] = "username looks good"
     end
     #user entered username w/ only acceptable characters
     #user entered valid email
@@ -48,13 +48,12 @@ class UsersController < ApplicationController
   helpers do 
     def username_format_valid?(string)
       valid_format = true
-      message = nil
       if string.length <= 6
         valid_format = false
         flash[:alert] = "username must be at least 6 characters"
-      elsif /\A\w[^_]*\z/.match(string).to_s != string
+      elsif /\A[a-zA-Z0-9-]*\z/.match(string).to_s != string
         valid_format = false
-        flash[:alert] = "username may only contain letters and numbers"
+        flash[:alert] = "username may only contain letters, numbers, and hyphens"
       end
       valid_format
     end
