@@ -8,10 +8,15 @@ class UsersController < ApplicationController
   post '/signup' do
     @user_info = params[:user]
     #user entered a properly formatted username
-    if !username_format_valid?(@user_info[:username])
+
+    if !user_info_format_valid?(@user_info)
       redirect '/signup'
-    elsif !password_format_valid?(@user_info[:password])
-      redirect '/signup'
+    # if !username_format_valid?(@user_info[:username])
+    #   redirect '/signup'
+    # elsif !password_format_valid?(@user_info[:password])
+    #   redirect '/signup'
+    # elsif !email_format_valid?@user_info[:email]
+    #   redirect '/signup'
     else
       flash.now[:notice] = "looks good"
     end
@@ -59,13 +64,18 @@ class UsersController < ApplicationController
         flash[:alert] = "username must be at least 6 characters"
       elsif /\A[a-zA-Z0-9-]*\z/.match(string).to_s != string
         valid_format = false
-        flash.now = "username may only contain letters, numbers, and hyphens"
+        flash[:alert] = "username may only contain letters, numbers, and hyphens"
       end
       valid_format
     end
     
     def email_format_valid?(string)
-
+      valid_format = true
+      if string == "" || /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/.match(string).to_s != string
+        valid_format = false
+        flash[:alert] = "please enter a valid email address"
+      end
+      valid_format
     end
 
     def password_format_valid?(string)
@@ -80,7 +90,17 @@ class UsersController < ApplicationController
       valid_format
     end
 
-
+    def user_info_format_valid?(user_info)
+      valid_format = true
+      if !username_format_valid?(user_info[:username])
+        valid_format = false
+      elsif !email_format_valid?(user_info[:email])
+        valid_format = false
+      elsif !password_format_valid?(user_info[:password])
+        valid_format = false
+      end 
+      valid_format
+    end
   end
 
 end
