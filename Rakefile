@@ -1,3 +1,4 @@
+ENV["SINATRA_ENV"] ||= "development"
 require_relative './config/environment'
 
 #load the sinatra activerecord rake task library i.e. migrations
