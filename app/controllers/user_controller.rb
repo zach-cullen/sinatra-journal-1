@@ -33,9 +33,9 @@ class UsersController < ApplicationController
 
     #if found user and password matches create session user and redirect to account
     if user && user.authenticate(params[:user][:password])
+      #start session and redirect to user account
       session[:user_id] = user.id
-      #if user is found, validate password and log in
-      flash.now[:alert] = "User password matches"
+      redirect "/user/#{user.username}"
     elsif !user
       #if user is not found, ask to sign up
       flash[:alert] = 'No user found with that email address, please <a href="/signup">sign up</a> or try again.'
@@ -45,14 +45,21 @@ class UsersController < ApplicationController
       flash[:alert] = "Incorrect password, please try again."
       redirect '/login'
     end
-
-    
-    #create session user_id
-    #send to user/:slug
   end
 
-  get '/user/:slug' do
-    #load user home page
+  
+  get '/user/:username' do
+    account = User.find_by(username: params[:username])
+    @user = User.find(session[:user_id])
+    
+    if @user && @user == account
+      erb :account
+    elsif !account
+      flash.now[:alert] = "Error Page Does Not Exit"
+    else
+      flash.now[:alert] = "Not logged in!"
+      redirect '/login'
+    end
   end
 
   get '/logout' do
