@@ -49,35 +49,50 @@ class UsersController < ApplicationController
 
   
   get '/user/:username' do
-    account = User.find_by(username: params[:username])
-    @user = User.find(session[:user_id])
+    @user = find_user_or_logout
+    binding.pry
+    erb :account
+
+    # account = User.find_by(username: params[:username])
+    # @user = User.find(session[:user_id])
     
-    if @user && @user == account
-      erb :account
-    elsif !account
-      flash.now[:alert] = "Error Page Does Not Exit"
-    else
-      redirect '/logout'
-    end
+    # if @user && @user == account
+    #   erb :account
+    # elsif !account
+    #   flash.now[:alert] = "Error Page Does Not Exit"
+    # else
+    #   redirect '/logout'
+    # end
   end
 
   get '/logout' do
     session.clear
     redirect '/login'
     flash[:alert] = "You have been logged out. Please log in to continue."
-    #clear session
-    #send to home page
   end
-
-  get '/failure' do
-    #send to login w/ message
-  end 
 
   get '/delete' do
     #delete user
   end
 
   helpers do 
+    def find_user_or_logout
+      user = get_user
+      if !!user && logged_in?(user)
+        user
+      else
+        redirect '/logout'
+      end
+    end
+
+    def logged_in?(user)
+      !!session[:user_id] && session[:user_id] == user.id
+    end
+
+    def get_user
+      User.find_by(username: params[:username])
+    end
+
     def username_format_valid?(string)
       valid_format = true
       if string.length < 6
