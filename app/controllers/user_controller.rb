@@ -8,11 +8,11 @@ class UsersController < ApplicationController
   post '/signup' do
     @user_info = params[:user]
     if !user_info_format_valid?(@user_info)
-      #use helper methods to validate formatting
+      #use helper methods to validate formatting and provide user feedback
       redirect '/signup'
     elsif !!User.find_by(username: @user_info[:username]) || !!User.find_by(email: @user_info[:email])
       #redirect to login if username or email not unique
-      flash[:alert] = "User already exists with this username or email."
+      flash[:alert] = "User already exists with this username or email address."
     else
       #create new user
       User.create(@user_info)
@@ -29,18 +29,24 @@ class UsersController < ApplicationController
 
   post '/login' do
     #find user if email is in database
-    @user = User.find_by(email: params[:user][:email])
+    user = User.find_by(email: params[:user][:email])
 
-    if !!@user
+    #if found user and password matches create session user and redirect to account
+    if user && user.authenticate(params[:user][:password])
+      session[:user_id] = user.id
       #if user is found, validate password and log in
-      flash.now[:alert] = "Found user!"
+      flash.now[:alert] = "User password matches"
+    elsif !user
+      #if user is not found, ask to sign up
+      flash[:alert] = 'No user found with that email address, please <a href="/signup">sign up</a> or try again.'
+      redirect '/login'
     else
-      #if user is not found, ask to try again
-      flash[:alert] = "No user found with that email address, please sign up or try again."
+      #if user found but password incorrect, ask to try again
+      flash[:alert] = "Incorrect password, please try again."
       redirect '/login'
     end
 
-    #user password matches 
+    
     #create session user_id
     #send to user/:slug
   end
