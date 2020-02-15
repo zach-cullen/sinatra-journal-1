@@ -57,12 +57,14 @@ class UsersController < ApplicationController
     elsif !account
       flash.now[:alert] = "Error Page Does Not Exit"
     else
-      flash.now[:alert] = "Not logged in!"
-      redirect '/login'
+      redirect '/logout'
     end
   end
 
   get '/logout' do
+    session.clear
+    redirect '/login'
+    flash[:alert] = "You have been logged out. Please log in to continue."
     #clear session
     #send to home page
   end
