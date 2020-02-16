@@ -50,19 +50,7 @@ class UsersController < ApplicationController
   
   get '/user/:username' do
     @user = find_user_or_logout
-    binding.pry
     erb :account
-
-    # account = User.find_by(username: params[:username])
-    # @user = User.find(session[:user_id])
-    
-    # if @user && @user == account
-    #   erb :account
-    # elsif !account
-    #   flash.now[:alert] = "Error Page Does Not Exit"
-    # else
-    #   redirect '/logout'
-    # end
   end
 
   get '/logout' do
