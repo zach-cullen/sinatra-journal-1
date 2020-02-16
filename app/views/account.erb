@@ -1,9 +1,10 @@
 <h1>Welcome <%= @user.username %>!</h1>
 <br>
 <% if @user.journals.count > 0 %>
-<h3>Current Journals:</h3>
+<h3>My Journals:</h3>
   <% @user.journals.each do |journal| %>
     <p><%= journal.title %></p>
+    <p><a href="/journals/<%=@user.username%>/<%=journal.id%>/write">Write</a> <a href="/journals/<%=@user.username%>/<%=journal.id%>">Read</a></p>
   <% end %>
 <% end %>
 <br>
