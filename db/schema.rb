@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_13_152831) do
+ActiveRecord::Schema.define(version: 2020_02_16_144346) do
+
+  create_table "journals", force: :cascade do |t|
+    t.string "title"
+    t.integer "user_id"
+    t.boolean "archived"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
