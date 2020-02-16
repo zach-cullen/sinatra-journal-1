@@ -15,11 +15,22 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def find_user_or_logout
+      #finds a user via route parameters unless they are not logged in
       user = get_user
       if !!user && logged_in?(user)
         user
       else
         redirect '/logout'
+      end
+    end
+
+    def find_journal_or_redirect
+      #finds a journal via route parameters unless it doesn't belong to the logged in user
+      journal = @user.journals.find_by(id: params[:id])
+      if !!journal
+        erb :'journals/read'
+      else 
+        redirect "/user/#{@user.username}"
       end
     end
 

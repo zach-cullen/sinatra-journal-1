@@ -12,12 +12,13 @@ class JournalsController < ApplicationController
 
   get '/journals/:username/:id' do 
     @user = find_user_or_logout
-    @journal = @user.journals.find_by(id: params[:id])
-    if @journal
-      erb :'journals/read'
-    else 
-      redirect "/user/#{@user.username}"
-    end
+    @journal = find_journal_or_redirect
+    # @user.journals.find_by(id: params[:id])
+    # if @journal
+    #   erb :'journals/read'
+    # else 
+    #   redirect "/user/#{@user.username}"
+    # end
   end
 
 
