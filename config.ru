@@ -9,6 +9,8 @@ use Rack::MethodOverride
 
 #load child controllers and run parent controller
 #mount controllers
+
 use UsersController
 use JournalsController
+use PromptsController
 run ApplicationController
