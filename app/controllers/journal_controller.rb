@@ -1,10 +1,5 @@
 class JournalsController < ApplicationController
 
-  get '/journals/:username' do
-    @user = find_user_or_logout
-    #list all journals created by user
-  end
-
   post '/journals/:username' do
     @user = find_user_or_logout
     binding.pry
