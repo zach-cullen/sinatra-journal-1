@@ -18,7 +18,7 @@ class JournalsController < ApplicationController
   get '/journals/:username/:id' do 
     @user = find_user_or_logout
     @journal = Journal.find(params[:id])
-    erb :show
+    erb :'journals/show'
   end
 
 end
