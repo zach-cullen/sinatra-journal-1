@@ -64,23 +64,6 @@ class UsersController < ApplicationController
   end
 
   helpers do 
-    def find_user_or_logout
-      user = get_user
-      if !!user && logged_in?(user)
-        user
-      else
-        redirect '/logout'
-      end
-    end
-
-    def logged_in?(user)
-      !!session[:user_id] && session[:user_id] == user.id
-    end
-
-    def get_user
-      User.find_by(username: params[:username])
-    end
-
     def username_format_valid?(string)
       valid_format = true
       if string.length < 6
