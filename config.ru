@@ -1,8 +1,8 @@
 require './config/environment'
 
-if ActiveRecord::Base.connection.migration_context.needs_migration?
-  raise 'Migrations pending, use rake db:migrate to resolve'
-end
+# if ActiveRecord::Base.connection.migration_context.needs_migration?
+#   raise 'Migrations pending, use rake db:migrate to resolve'
+# end
 
 #enables patch, put, and delete as post overrides from forms
 use Rack::MethodOverride
