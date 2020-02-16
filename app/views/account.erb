@@ -1,5 +1,12 @@
 <h1>Welcome <%= @user.username %>!</h1>
 <br>
+<% if @user.journals.count > 0 %>
+<h3>Current Journals:</h3>
+  <% @user.journals.each do |journal| %>
+    <p><%= journal.title %></p>
+  <% end %>
+<% end %>
+<br>
 <h3>Start a New Journal</h3>
 <form method="POST" action="/journals/<%=@user.username%>">
   <input type="text" id="journal_title" name="journal[title]" placeholder="Title">
