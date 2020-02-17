@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
 
     def find_journal_or_redirect
       #finds a journal via route parameters unless it doesn't belong to the logged in user
-      journal = @user.journals.find_by(id: params[:id])
+      journal = @user.journals.find_by(id: params[:journal_id])
       redirect "/user/#{@user.username}" if !journal
       journal
     end
