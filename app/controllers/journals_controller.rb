@@ -5,7 +5,7 @@ class JournalsController < ApplicationController
     #create new journal at user
     @journal = @user.journals.create(params[:journal])
     #redirect to show page
-    redirect "/journals/#{@user.username}/#{@journal.id}"
+    redirect "/journals/#{@user.username}/#{@journal.id}/write"
   end
 
   get '/journals/:username/:journal_id' do 
