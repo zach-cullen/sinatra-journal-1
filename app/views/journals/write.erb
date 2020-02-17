@@ -2,9 +2,8 @@
   <a href="/user/<%= @user.username %>">My Account</a>
   <a href="/logout">Log Out</a>
 </nav>
-<h1><%= @journal.title %></h3>
 
-<h4>Prompts:</h4>
+<h1><%= @journal.title %></h3>
 
 <form>
 <% @journal.prompts.each do |prompt| %>
