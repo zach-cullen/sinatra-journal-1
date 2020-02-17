@@ -1,2 +1,8 @@
-<h1>User: <%= @user.username %><h1>
-<h3>Writing in: <%= @journal.title %>
+<h1><%= @journal.title %></h3>
+
+<h4>Prompts:</h4>
+
+<p>Add New Journal Prompt:</p>
+<form method="POST" action="/prompts/<%=@user.username%>/<%=@journal.id%>">
+<textarea name="prompt[title]" placeholder="What do you want to write about?"></textarea>
+<br><input type="submit" value="Add Prompt">
