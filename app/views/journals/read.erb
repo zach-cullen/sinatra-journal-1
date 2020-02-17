@@ -1,10 +1,9 @@
 <h2>Title: <%= @journal.title %></h2>
 <p><a href="/user/<%=@user.username%>">Back to My Account</a></p>
   <% @journal.entries.sort {|a, b| b.updated_at <=> a.updated_at}.each do |entry| %>
-    <h4><%= entry.prompt.title %></h4>
-    <% binding.pry %>
-    <p style="white-space: pre-line"><%= entry.text %></p>
     <h6><%= entry.updated_at.strftime("%I:%M %P %a %b %d") %></h6>
+    <h4><%= entry.prompt.title %></h4>
+    <p style="white-space: pre-line"><%= entry.text %></p>
     <br>
   <% end %>
 <br>
