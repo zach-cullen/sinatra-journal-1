@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_16_170721) do
+ActiveRecord::Schema.define(version: 2020_02_17_152344) do
+
+  create_table "entries", force: :cascade do |t|
+    t.text "text"
+    t.integer "prompt_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "journals", force: :cascade do |t|
     t.string "title"
