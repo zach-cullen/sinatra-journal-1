@@ -8,7 +8,7 @@ class JournalsController < ApplicationController
     redirect "/journals/#{@user.username}/#{@journal.id}"
   end
 
-  get '/journals/:username/:id' do 
+  get '/journals/:username/:journal_id' do 
     @user = find_user_or_logout
     @journal = find_journal_or_redirect
     erb :'journals/read'
