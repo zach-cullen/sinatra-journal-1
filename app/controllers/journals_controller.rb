@@ -24,7 +24,7 @@ class JournalsController < ApplicationController
   delete '/journals/:username/:journal_id'
     @user = find_user_or_logout
     @journal = find_journal_or_redirect
-    
+    @journal.destroy
   end
 
 end
