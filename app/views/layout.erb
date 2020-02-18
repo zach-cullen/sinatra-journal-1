@@ -6,10 +6,26 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
   <link rel="stylesheet" href="/stylesheets/milligram.css">
+  <link rel="stylesheet" href="/stylesheets/main.css">
 </head>
 <body>
-
-<%= yield %>
-
+  <nav class="navigation">
+    <div class="container">
+      <a class="navigation-title" href="">JournalHelper</a>
+      <div class="float-right">
+        <% if !!@user %>
+          <a class="navigation-list" href="">Dashboard</a>
+          <a class="navigation-list" href="">Account</a>
+          <a class="navigation-list" href="/logout">Logout</a>
+        <% else %>
+          <a class="navigation-list" href="/signup">Sign Up</a>
+          <a class="navigation-list" href="/login">Log in</a>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <%= yield %>
+  </div>
 </body>
 </html>
