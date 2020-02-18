@@ -1,23 +1,29 @@
-  <div class="row" style="height: 3rem"></div>
+  <div class="row wrap-row" style="height: 3rem"></div>
   <h3 style="text-align: center;">My Journals:</h3>
-  <div class="row">
+  <div class="row wrap-row">
     <% @user.journals.each do |journal| %>
       <div class="column column-33">
-        <p><%= journal.title %></p>
-        <a href="/journals/<%=@user.username%>/<%=journal.id%>/write">Write</a> 
-        <a href="/journals/<%=@user.username%>/<%=journal.id%>">Read</a>
-        <form method="post" action="/journals/<%=@user.username%>/<%=journal.id%>">
-        <input id="hidden" type="hidden" name="_method" value="Delete">
-        <input class="button" type="submit" value="Delete">
-        </form>
+        <div class="journal-card">
+          <h4><%= journal.title %></h4>
+          <a class="button button-clear" href="/journals/<%=@user.username%>/<%=journal.id%>/write">Write</a>
+          <br> 
+          <a class="button button-clear" href="/journals/<%=@user.username%>/<%=journal.id%>">Read</a>
+          <form method="post" action="/journals/<%=@user.username%>/<%=journal.id%>">
+            <input id="hidden" type="hidden" name="_method" value="Delete">
+            <input class="button button-clear" type="submit" value="Delete">
+          </form>
+        </div>
       </div>
     <% end %>
+    <div class="column column-33">
+      <div class="journal-card">
+        <h4>+ New Journal</h4>
+        <br>
+        <form method="POST" action="/journals/<%=@user.username%>">
+          <input style="width: 66%;" type="text" id="journal_title" name="journal[title]" placeholder="Title">
+          <input type="submit" value="Create Journal">
+        </form>
+      </div>
+    </div>
   </div>
 
-  <h3>Start a New Journal</h3>
-  <form method="POST" action="/journals/<%=@user.username%>">
-    <input type="text" id="journal_title" name="journal[title]" placeholder="Title">
-    <input type="submit" value="Create Journal">
-  </form>
-  <br>
-  <p><a href="/logout">Log Out</a></p>
