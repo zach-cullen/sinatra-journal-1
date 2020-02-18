@@ -25,6 +25,7 @@ class JournalsController < ApplicationController
     @user = find_user_or_logout
     @journal = find_journal_or_redirect
     @journal.destroy
+    redirect '/user/:username'
   end
 
 end
