@@ -21,7 +21,7 @@ class JournalsController < ApplicationController
     erb :'journals/write'
   end
 
-  delete '/journals/:username/:journal_id'
+  delete '/journals/:username/:journal_id' do
     @user = find_user_or_logout
     @journal = find_journal_or_redirect
     @journal.destroy
