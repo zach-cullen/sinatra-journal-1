@@ -4,7 +4,12 @@
 <h3>My Journals:</h3>
   <% @user.journals.each do |journal| %>
     <p><%= journal.title %></p>
-    <p><a href="/journals/<%=@user.username%>/<%=journal.id%>/write">Write</a> <a href="/journals/<%=@user.username%>/<%=journal.id%>">Read</a></p>
+    <p><a href="/journals/<%=@user.username%>/<%=journal.id%>/write">Write</a> 
+    <a href="/journals/<%=@user.username%>/<%=journal.id%>">Read</a>
+    <form method="post" action="/journals/<%=@user.username%>/<%=journal.id%>">
+    <input id="hidden" type="hidden" name="_method" value="Delete">
+    <input type="submit" value="Delete">
+    </form>
   <% end %>
 <% end %>
 <br>
@@ -14,4 +19,5 @@
   <input type="submit" value="Create Journal">
 </form>
 <br>
+<% binding.pry %>
 <p><a href="/logout">Log Out</a></p>
