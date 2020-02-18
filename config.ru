@@ -1,15 +1,14 @@
 require './config/environment'
 
-# if ActiveRecord::Base.connection.migration_context.needs_migration?
-#   raise 'Migrations pending, use rake db:migrate to resolve'
-# end
+#use preprocessor to generate css stylesheet at runtime from sass files
+require 'sass/plugin/rack'
+Sass::Plugin.options[:style] = :compressed
+use Sass::Plugin::Rack
 
 #enables patch, put, and delete as post overrides from forms
 use Rack::MethodOverride
 
-#load child controllers and run parent controller
 #mount controllers
-
 use EntriesController
 use UsersController
 use PromptsController
