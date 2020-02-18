@@ -1,0 +1,15 @@
+.navigation {
+  height: 5.4rem;
+  line-height: 5.4rem;
+  color: white;
+}
+
+.navigation-title {
+  font-weight: bold;
+  color: #4a4fe0;
+}
+
+.navigation-list {
+  padding-left: 3.2rem;
+  color: #4a4fe0;
+}
