@@ -1,17 +1,20 @@
-<h1>Log In</h1>
-
-<form method="POST" action="/login" id="login_form">
-<label for="email">Email: </label>
-<br>
-<input type="text" id="email" name="user[email]">
-<br>
-<label for="password">Password: </label>
-<br>
-<input type="text" id="password" name="user[password]">
-<br>
-<input type="submit" id="submit" value="LOG IN">
-</form>
-
+<div class="container">
+  <div class="row" style="height: 3rem"></div>
+  <div class="row">
+    <div class="column column-25"></div>
+    <div class="column">
+      <h3 style="text-align: center;">Log In</h3>
+      <form method="POST" action="/login" id="login_form">
+      <label for="email">Email: </label>
+      <input type="text" id="email" name="user[email]">
+      <label for="password">Password: </label>
+      <input type="text" id="password" name="user[password]">
+      <input class="button" type="submit" id="submit" value="LOG IN" style="width: 100%;">
+      </form>
+    </div>
+    <div class="column column-25"></div>
+  </div>
+</div>
 <br>
 <p><%= flash[:alert] %></p>
 
