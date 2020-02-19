@@ -1,9 +1,14 @@
-<h2>Title: <%= @journal.title %></h2>
-<p><a href="/user/<%=@user.username%>">Back to My Account</a></p>
-  <% @journal.entries.sort {|a, b| b.updated_at <=> a.updated_at}.each do |entry| %>
-    <h6><%= entry.updated_at.strftime("%a %b %d %I:%M%P") %></h6>
-    <h4><%= entry.prompt.title %></h4>
-    <p style="white-space: pre-line"><%= entry.text %></p>
-    <br>
-  <% end %>
+<h3 style="text-align: center;"><%= @journal.title %></h3>
+  <div class="row">
+    <div class="column column-20"></div>
+    <div class="column column-60">
+      <% @journal.entries.sort {|a, b| b.updated_at <=> a.updated_at}.each do |entry| %>
+        <h6><%= entry.updated_at.strftime("%a %b %d %I:%M%P") %></h6>
+        <h5><%= entry.prompt.title %></h4>
+        <p style="white-space: pre-line"><%= entry.text %></p>
+        <br>
+      <% end %>
+    </div>
+    <div class="column column-20"></div>
+  </div>
 <br>

@@ -1,9 +1,4 @@
-<nav>
-  <a href="/user/<%= @user.username %>">My Account</a>
-  <a href="/logout">Log Out</a>
-</nav>
-
-<h1><%= @journal.title %></h3>
+<h3 style="text-align: center;"><%= @journal.title %></h3>
 
 <% @journal.prompts.each do |prompt| %>
   <form method="POST" action="/entries/<%=@user.username%>/<%=@journal.id%>/<%=prompt.id%>">
