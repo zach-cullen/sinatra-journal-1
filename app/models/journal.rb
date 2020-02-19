@@ -3,7 +3,7 @@ class Journal < ActiveRecord::Base
   has_many :prompts, :dependent => :destroy
   has_many :entries, through: :prompts
 
-  def entries_made_today_in_localtime
+  def count_todays_entries_localtime
     #returns number of entries made in journal today or nil
     today_localtime = Time.now.getlocal.to_date
     entries = self.entries.select{|e| e.date_created_in_localtime == today_localtime}
