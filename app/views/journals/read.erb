@@ -3,7 +3,7 @@
     <div class="column column-20"></div>
     <div class="column column-60">
       <% @journal.entries.sort {|a, b| b.updated_at <=> a.updated_at}.each do |entry| %>
-        <h6><%= entry.updated_at.strftime("%a %b %d %I:%M%P") %></h6>
+        <h6><%= (entry.created_at + Time.now.getlocal.gmt_offset).strftime("%A %b %d %I:%M%P") %></h6>
         <h5><%= entry.prompt.title %></h4>
         <p style="white-space: pre-line"><%= entry.text %></p>
         <br>
