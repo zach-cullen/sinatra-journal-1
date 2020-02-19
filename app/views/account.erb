@@ -5,6 +5,7 @@
       <div class="card-column">
         <div class="journal-card">
           <h4><%= journal.title %></h4>
+          <h6><%= journal.count_todays_entries%>/<%= journal.prompts.count.to_s %></h6>
           <a class="button button-clear" href="/journals/<%=@user.username%>/<%=journal.id%>/write">Write</a>
           <br> 
           <a class="button button-clear" href="/journals/<%=@user.username%>/<%=journal.id%>">Read</a>
