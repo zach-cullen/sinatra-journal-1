@@ -14,8 +14,7 @@
       <a class="navigation-title" href="">JournalHelper</a>
       <div class="float-right">
         <% if !!@user %>
-          <a class="navigation-list" href="">Dashboard</a>
-          <a class="navigation-list" href="">Account</a>
+          <a class="navigation-list" href="/user/<%=@user.username%>">Account</a>
           <a class="navigation-list" href="/logout">Logout</a>
         <% else %>
           <a class="navigation-list" href="/signup">Sign Up</a>
