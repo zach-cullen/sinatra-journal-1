@@ -1,15 +1,19 @@
 <h3 style="text-align: center;"><%= @journal.title %></h3>
 
 <% @journal.prompts.each do |prompt| %>
-  <form method="POST" action="/entries/<%=@user.username%>/<%=@journal.id%>/<%=prompt.id%>">
-    <p><%= prompt.title %></p>
-    <textarea name="entry[text]" placeholder="Start writing..."></textarea>
-    <input type="submit" value="Save">
-  </form>
+  <h5><%= prompt.title %></h5>
+  <% if !prompt.entry_made_today %>
+    <form method="POST" action="/entries/<%=@user.username%>/<%=@journal.id%>/<%=prompt.id%>">
+      <textarea name="entry[text]" placeholder="Start writing..."></textarea>
+      <input type="submit" value="Save">
+    </form>
+  <% else %>
+    <p><%= prompt.entry_made_today.text %></p>
+  <% end %>
 <% end %>
 
 
-<p>Add New Journal Prompt:</p>
+<h5>Add New Journal Prompt:</h5>
 <form method="POST" action="/prompts/<%=@user.username%>/<%=@journal.id%>">
-<textarea name="prompt[title]" placeholder=""></textarea>
-<input type="submit" value="Add Prompt">
+<input type="text" name="prompt[title]" placeholder=""></textarea>
+<input type="submit" value="+ New Prompt">
