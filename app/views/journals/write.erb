@@ -9,11 +9,12 @@
     </form>
   <% else %>
     <p><%= prompt.entry_made_today.text %></p>
+    <h6><a href="/entries/<%=@user.username%>/<%=@journal.id%>/<%=prompt.entry_made_today.id%>/edit">Edit Entry</a></h6>
   <% end %>
+  <br>
 <% end %>
 
-
-<h5>Add New Journal Prompt:</h5>
+<h5>Add a New Journal Prompt</h5>
 <form method="POST" action="/prompts/<%=@user.username%>/<%=@journal.id%>">
 <input type="text" name="prompt[title]" placeholder=""></textarea>
-<input type="submit" value="+ New Prompt">
+<input type="submit" value="+ Add">
