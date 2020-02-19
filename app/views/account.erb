@@ -2,7 +2,7 @@
   <h3 style="text-align: center;">My Journals:</h3>
   <div class="row wrap-row">
     <% @user.journals.each do |journal| %>
-      <div class="column column-33">
+      <div class="card-column">
         <div class="journal-card">
           <h4><%= journal.title %></h4>
           <a class="button button-clear" href="/journals/<%=@user.username%>/<%=journal.id%>/write">Write</a>
@@ -15,7 +15,7 @@
         </div>
       </div>
     <% end %>
-    <div class="column column-33">
+    <div class="card-column">
       <div class="journal-card">
         <h4>+ New Journal</h4>
         <br>
