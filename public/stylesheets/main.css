@@ -30,6 +30,17 @@
   padding-top: 1.6rem;
 }
 
+textarea:focus {
+  animation-name: expand-text-area;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes expand-text-area {
+  from{height: 3.8rem;}
+  to{height: 30rem;}
+}
+
 h4 {
   text-align: center;
 }
