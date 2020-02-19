@@ -1,20 +1,24 @@
 <h3 style="text-align: center;"><%= @journal.title %></h3>
+<div class="row">
+  <div class="column column-20"></div>
+  <div class="column column-60">
+    <% @journal.prompts.each do |prompt| %>
+      <h5><%= prompt.title %></h5>
+      <% if !prompt.entry_made_today %>
+        <form method="POST" action="/entries/<%=@user.username%>/<%=@journal.id%>/<%=prompt.id%>">
+          <textarea name="entry[text]" placeholder="Start writing..."></textarea>
+          <input type="submit" value="Save">
+        </form>
+      <% else %>
+        <p><%= prompt.entry_made_today.text %></p>
+        <h6><a href="/entries/<%=@user.username%>/<%=@journal.id%>/<%=prompt.entry_made_today.id%>/edit">Edit Entry</a></h6>
+      <% end %>
+      <br>
+    <% end %>
 
-<% @journal.prompts.each do |prompt| %>
-  <h5><%= prompt.title %></h5>
-  <% if !prompt.entry_made_today %>
-    <form method="POST" action="/entries/<%=@user.username%>/<%=@journal.id%>/<%=prompt.id%>">
-      <textarea name="entry[text]" placeholder="Start writing..."></textarea>
-      <input type="submit" value="Save">
-    </form>
-  <% else %>
-    <p><%= prompt.entry_made_today.text %></p>
-    <h6><a href="/entries/<%=@user.username%>/<%=@journal.id%>/<%=prompt.entry_made_today.id%>/edit">Edit Entry</a></h6>
-  <% end %>
-  <br>
-<% end %>
-
-<h5>Add a New Journal Prompt</h5>
-<form method="POST" action="/prompts/<%=@user.username%>/<%=@journal.id%>">
-<input type="text" name="prompt[title]" placeholder=""></textarea>
-<input type="submit" value="+ Add">
+    <h5>Add a New Journal Prompt</h5>
+    <form method="POST" action="/prompts/<%=@user.username%>/<%=@journal.id%>">
+    <input type="text" name="prompt[title]" placeholder=""></textarea>
+    <input type="submit" value="+ Add">
+  </div>
+</div>
