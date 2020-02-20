@@ -1,6 +1,12 @@
-<h5><%= @entry.prompt.title %></h5>
-<form method="POST" action="/entries/<%=@user.username%>/<%=@journal.id%>/<%=@entry.id%>">
-  <input id="hidden" type="hidden" name="_method" value="PATCH">
-  <textarea name="entry[text]"><%= @entry.text %></textarea>
-  <input type="submit" value="Save Changes">
-</form>
+<br>
+<div class="row">
+  <div class="column column-20"></div>
+  <div class="column column-60">
+    <h5><%= @entry.prompt.title %></h5>
+    <form method="POST" action="/entries/<%=@user.username%>/<%=@journal.id%>/<%=@entry.id%>">
+      <input id="hidden" type="hidden" name="_method" value="PATCH">
+      <textarea name="entry[text]"><%= @entry.text %></textarea>
+      <input type="submit" value="Save Changes">
+    </form>
+  </div>
+</div>
