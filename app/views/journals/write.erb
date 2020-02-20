@@ -1,3 +1,4 @@
+<br>
 <h3 style="text-align: center;"><%= @journal.title %></h3>
 <div class="row">
   <div class="column column-20"></div>
@@ -10,7 +11,7 @@
           <input type="submit" value="Save">
         </form>
       <% else %>
-        <p><%= prompt.entry_made_today.text %></p>
+        <p style="white-space: pre-line"><%= prompt.entry_made_today.text %></p>
         <h6><a href="/entries/<%=@user.username%>/<%=@journal.id%>/<%=prompt.entry_made_today.id%>/edit">Edit Entry</a></h6>
       <% end %>
       <br>
