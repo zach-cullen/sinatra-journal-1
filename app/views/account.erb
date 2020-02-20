@@ -18,11 +18,11 @@
     <% end %>
     <div class="card-column">
       <div class="journal-card">
-        <h4>+ New Journal</h4>
+        <h4>Start a New Journal</h4>
         <br>
         <form method="POST" action="/journals/<%=@user.username%>">
           <input style="width: 66%;" type="text" id="journal_title" name="journal[title]" placeholder="Title">
-          <input type="submit" value="Create Journal">
+          <input type="submit" value="+ Create">
         </form>
       </div>
     </div>
