@@ -29,17 +29,24 @@
   border-radius: 2.4rem;
   margin: 1.6rem;
   padding-top: 1.6rem;
-}
-
-.journal-card:hover {
-  animation-name: float-shadow;
+  animation-name: float-shadow-off;
   animation-duration: 0.3s;
   animation-fill-mode: both;
 }
 
-@keyframes float-shadow {
+.journal-card:hover {
+  animation-name: float-shadow-on;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+@keyframes float-shadow-on {
   from{box-shadow: none; margin: 1.6rem;}
   to{box-shadow: 0px 4px 16px -10px rgba(74,79,224,0.6); margin: 1.2rem;}
+}
+@keyframes float-shadow-off {
+  from{box-shadow: 0px 4px 16px -10px rgba(74,79,224,0.6); margin: 1.2rem;}
+  to{box-shadow: none; margin: 1.6rem;}
 }
 
 textarea:focus {
