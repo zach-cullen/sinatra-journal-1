@@ -40,6 +40,10 @@
   animation-fill-mode: both;
 }
 
+.readable-column {
+  width: 60%;
+}
+
 
 @keyframes float-shadow-on {
   from{box-shadow: none; margin: 1.6rem 1.6rem 1.6rem 1.6rem;}
@@ -85,6 +89,10 @@ h6 {
 
 @media only screen and (max-width: 640px) {
   .card-column {
+    width: 100%;
+  }
+
+  .readable-column {
     width: 100%;
   }
 }
