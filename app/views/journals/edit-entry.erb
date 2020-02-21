@@ -1,7 +1,7 @@
 <br>
 <div class="row">
   <div class="column column-20"></div>
-  <div class="column column-60">
+  <div class="readable-column">
     <h5><%= @entry.prompt.title %></h5>
     <form method="POST" action="/entries/<%=@user.username%>/<%=@journal.id%>/<%=@entry.id%>">
       <input id="hidden" type="hidden" name="_method" value="PATCH">
