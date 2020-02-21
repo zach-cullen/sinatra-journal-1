@@ -2,7 +2,7 @@
 <h3 style="text-align: center;"><%= @journal.title %></h3>
 <div class="row">
   <div class="column column-20"></div>
-  <div class="column column-60">
+  <div class="readable-column">
     <% previous_date = nil %>
     <% @journal.entries.sort {|a, b| b.updated_at <=> a.updated_at}.each do |entry| %>
       <% if previous_date != entry.date_created_in_localtime %>
