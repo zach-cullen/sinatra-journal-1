@@ -4,11 +4,11 @@
   <div class="column column-20"></div>
   <div class="column column-60">
     <% @journal.prompts.each do |prompt| %>
-      <h5><%= prompt.title %></h5>
+      <h5><%= prompt.title %><input style="float: right; height: 3.2rem; line-height: 3.2rem;"  type="submit" value="Save"></h5>
       <% if !prompt.entry_made_today %>
         <form method="POST" action="/entries/<%=@user.username%>/<%=@journal.id%>/<%=prompt.id%>">
           <textarea name="entry[text]" placeholder="Start writing..."></textarea>
-          <input type="submit" value="Save">
+          
         </form>
       <% else %>
         <p style="white-space: pre-line"><%= prompt.entry_made_today.text %></p>
@@ -17,9 +17,9 @@
       <br>
     <% end %>
 
-    <h5>Add a New Journal Prompt</h5>
+    <h5>Add a New Journal Prompt <input style="float: right; height: 3.2rem; line-height: 3.2rem;" type="submit" value="+ Add"></h5>
     <form method="POST" action="/prompts/<%=@user.username%>/<%=@journal.id%>">
     <input type="text" name="prompt[title]" placeholder=""></textarea>
-    <input type="submit" value="+ Add">
+    
   </div>
 </div>
