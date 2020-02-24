@@ -1,22 +1,28 @@
-<h1>Sign Up</h1>
-
-<form method="POST" action="/signup" id="signup_form">
-<label for="username">Username: </label>
-<br>
-<input type="text" id="username" name="user[username]" placeholder="yourname123">
-<br>
-<label for="email">Email: </label>
-<br>
-<input type="text" id="email" name="user[email]" placeholder="user@domain.com">
-<br>
-<label for="password">Password: </label>
-<br>
-<input type="text" id="password" name="user[password]" placeholder="password123">
-<br>
-<input type="submit" id="submit" value="SIGN UP">
-</form>
-
-<br>
-<p><%= flash[:alert] %></p>
-
-<p><a href="/">Home</a></p>
+<div class="container">
+  <div class="row" style="height: 3rem"></div>
+  <div class="row">
+    <div class="column column-25"></div>
+    <div class="column">
+      <h1>Sign Up</h1>
+      <form method="POST" action="/signup" id="signup_form">
+      <label for="username">Username: </label>
+      <br>
+      <input type="text" id="username" name="user[username]" placeholder="yourname123">
+      <br>
+      <label for="email">Email: </label>
+      <br>
+      <input type="text" id="email" name="user[email]" placeholder="user@domain.com">
+      <br>
+      <label for="password">Password: </label>
+      <br>
+      <input type="text" id="password" name="user[password]" placeholder="password123">
+      <br>
+      <input type="submit" id="submit" value="SIGN UP">
+      </form>
+      <br>
+      <p><%= flash[:alert] %></p>
+      <p><a href="/">Home</a></p>
+    </div>
+    <div class="column column-25"></div>
+  </div>
+</div>
