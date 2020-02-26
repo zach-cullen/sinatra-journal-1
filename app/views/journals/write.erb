@@ -17,8 +17,9 @@
       <br>
     <% end %>
 
-    <h5>Add a New Journal Prompt <input style="float: right; height: 3.2rem; line-height: 3.2rem;" type="submit" value="+ Add"></h5>
     <form method="POST" action="/prompts/<%=@user.username%>/<%=@journal.id%>">
+    <h5>Add a New Journal Prompt <input style="float: right; height: 3.2rem; line-height: 3.2rem;" type="submit" value="+ Add"></h5>
     <input type="text" name="prompt[title]" placeholder=""></textarea>
+    </form>
   </div>
 </div>
