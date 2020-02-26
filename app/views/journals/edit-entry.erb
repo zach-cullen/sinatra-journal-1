@@ -2,11 +2,10 @@
 <div class="row">
   <div class="column column-20"></div>
   <div class="readable-column">
-    <h5><%= @entry.prompt.title %></h5>
     <form method="POST" action="/entries/<%=@user.username%>/<%=@journal.id%>/<%=@entry.id%>">
+      <h5><%= @entry.prompt.title %><input style="float: right;" type="submit" value="Save Changes"></h5>
       <input id="hidden" type="hidden" name="_method" value="PATCH">
       <textarea name="entry[text]"><%= @entry.text %></textarea>
-      <input type="submit" value="Save Changes">
     </form>
   </div>
 </div>
