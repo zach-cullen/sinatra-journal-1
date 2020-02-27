@@ -14,34 +14,34 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
-    def find_user_or_logout
-      #finds a user via route parameters unless they are not logged in
-      user = get_user
-      if !!user && logged_in?(user)
-        user
-      else
-        redirect '/logout'
-      end
-    end
+  #   def find_user_or_logout
+  #     #finds a user via route parameters unless they are not logged in
+  #     user = get_user
+  #     if !!user && logged_in?(user)
+  #       user
+  #     else
+  #       redirect '/logout'
+  #     end
+  #   end
 
-    def find_journal_or_redirect
-      #finds a journal via route parameters unless it doesn't belong to the logged in user
-      journal = @user.journals.find_by(id: params[:journal_id])
-      redirect "/user/#{@user.username}" if !journal
-      journal
-    end
+  #   def find_journal_or_redirect
+  #     #finds a journal via route parameters unless it doesn't belong to the logged in user
+  #     journal = @user.journals.find_by(id: params[:journal_id])
+  #     redirect "/user/#{@user.username}" if !journal
+  #     journal
+  #   end
 
-    def logged_in?(user)
-      !!session[:user_id] && session[:user_id] == user.id
-    end
+  #   def logged_in?(user)
+  #     !!session[:user_id] && session[:user_id] == user.id
+  #   end
 
-    def get_user
-      User.find_by(username: params[:username])
-    end
-  end
+  #   def get_user
+  #     User.find_by(username: params[:username])
+  #   end
+  # end
 
-  def current_user 
-      User.find_by(id: session[:user_id])
+  def current_user
+    user ||= User.find_by(id: session[:user_id] if session[:user_id]
   end
 
 end
