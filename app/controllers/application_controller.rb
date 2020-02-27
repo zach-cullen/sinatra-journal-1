@@ -14,6 +14,15 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
+
+    def current_user
+      user ||= User.find_by(id: session[:user_id] if session[:user_id]
+    end
+
+    def logged_in?
+      !!session[:user_id]
+    end
+
   #   def find_user_or_logout
   #     #finds a user via route parameters unless they are not logged in
   #     user = get_user
@@ -40,8 +49,6 @@ class ApplicationController < Sinatra::Base
   #   end
   # end
 
-  def current_user
-    user ||= User.find_by(id: session[:user_id] if session[:user_id]
-  end
+
 
 end
