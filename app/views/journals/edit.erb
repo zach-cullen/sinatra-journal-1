@@ -1,0 +1,18 @@
+<br>
+<h3 style="text-align: center;"><%= @journal.title %></h3>
+<div class="row">
+  <div class="column column-20"></div>
+  <div class="readable-column">
+    <form method="POST" action="/journals/<%=@journal.id%>">
+      <input id="hidden" type="hidden" name="_method" value="PATCH">
+      <h5>Change Journal Title: <input type="submit" style="float: right;" value="Save Changes"></h5>
+      <input type="text" id="journal_title" name="journal[title]" value="<%=@journal.title%>">
+    </form>
+
+    <form method="post" action="/journals/<%=@user.username%>/<%=@journal.id%>">
+      <input id="hidden" type="hidden" name="_method" value="DELETE">
+      <p style="text-align: center;"><input class="button button-clear" style="color: red;" type="submit" value="Delete Journal"></p>
+    </form>
+  </div>
+</div>
+<br>
