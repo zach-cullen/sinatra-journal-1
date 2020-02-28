@@ -8,9 +8,9 @@ class EntriesController < ApplicationController
       @prompt.entries.create(params[:entry])
       redirect "/journals/#{@journal.id}/write"
     elsif !logged_in?
-      redirect '/login'
+      redirect_to_login
     else
-      redirect "/user/#{current_user.id}/journals"
+      redirect_user_to_self
     end
   end
 
@@ -50,9 +50,9 @@ class EntriesController < ApplicationController
       @entry.destroy
       redirect "/journals/#{@journal.id}/write"
     elsif !logged_in?
-      redirect '/login'
+      redirect_to_login
     else
-      redirect "/user/#{current_user.id}/journals"
+      redirect_user_to_self
     end
   end
 
@@ -64,6 +64,14 @@ class EntriesController < ApplicationController
       else
         false
       end
+    end
+
+    def redirect_user_to_self
+      redirect "/user/#{current_user.id}/journals"
+    end
+
+    def redirect_to_login
+      redirect '/login'
     end
 
   end
