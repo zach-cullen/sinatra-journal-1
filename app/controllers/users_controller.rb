@@ -66,7 +66,7 @@ class UsersController < ApplicationController
     if logged_in? && @user.id == params[:user_id].to_i
       erb :'users/myjournals'
     elsif logged_in?
-      redirect "/user/#{@user.id}"
+      redirect "/user/#{@user.id}/journals"
     else
       flash[:alert] = "You must be logged in to view this content"
       redirect 'login'
