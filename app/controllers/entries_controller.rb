@@ -22,9 +22,9 @@ class EntriesController < ApplicationController
       erb :'entries/edit'
     elsif !logged_in?
       flash[:alert] = "You must be logged in to view this content"
-      redirect '/login'
+      redirect_to_login
     else
-      redirect "/user/#{current_user.id}/journals"
+      redirect_user_to_self
     end
   end
 
@@ -36,9 +36,9 @@ class EntriesController < ApplicationController
       @entry.update(params[:entry])
       redirect "/journals/#{@journal.id}/write"
     elsif !logged_in? 
-      redirect '/login'
+      redirect_to_login
     else
-      redirect "/user/#{current_user.id}/journals"
+      redirect_user_to_self
     end
   end 
 
