@@ -1,16 +1,12 @@
 class JournalsController < ApplicationController
 
-  post '/journals/:id' do
-    # @user = find_user_or_logout
-    # #create new journal at user
-    # @journal = @user.journals.create(params[:journal])
-    # #redirect to show page
-    # redirect "/journals/#{@user.username}/#{@journal.id}/write"
+  #Create new journal
+  post '/journals' do
+
   end
 
+  #Read a journal
   get '/journals/:journal_id' do 
-    # @user = find_user_or_logout
-    # @journal = find_journal_or_redirect
     @user = current_user
     @journal = Journal.find_by(id: params[:journal_id])
     if logged_in? && journal_access_valid?
@@ -23,10 +19,8 @@ class JournalsController < ApplicationController
     end
   end
 
-
+  #Write in a journal i.e. make new prompts and entries
   get '/journals/:journal_id/write' do 
-    # @user = find_user_or_logout
-    # @journal = find_journal_or_redirect
     @user = current_user
     @journal = Journal.find_by(id: params[:journal_id])
     if logged_in? && journal_access_valid?
@@ -39,9 +33,8 @@ class JournalsController < ApplicationController
     end
   end
 
+  #Render form for updating or deleting a journal
   get '/journals/:journal_id/edit' do 
-    # @user = find_user_or_logout
-    # @journal = find_journal_or_redirect
     @user = current_user
     @journal = Journal.find_by(id: params[:journal_id])
     if logged_in? && journal_access_valid?
@@ -54,6 +47,7 @@ class JournalsController < ApplicationController
     end
   end
 
+  #Update a journal
   patch '/journals/:journal_id' do
     @user = current_user
     @journal = Journal.find_by(id: params[:journal_id])
@@ -66,6 +60,7 @@ class JournalsController < ApplicationController
     redirect "user/#{@user.id}/journals"
   end
 
+  #Delete a journal
   delete '/journals/:username/:journal_id' do
     @user = current_user
     @journal = Journal.find_by(id: params[:journal_id])
