@@ -29,10 +29,12 @@ class EntriesController < ApplicationController
     @journal = @prompt.journal
     if logged_in? && journal_access_valid?
       @prompt.entries.create(params[:entry])
-    else
+      redirect "/journals/#{@journal.id}/write"
+    elsif !logged_in?
       redirect '/login'
+    else
+      redirect "/user/#{current_user.id}/journals"
     end
-    redirect "/journals/#{@journal.id}/write"
   end
 
   #render for for Updating entry
