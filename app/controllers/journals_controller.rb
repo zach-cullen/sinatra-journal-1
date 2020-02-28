@@ -68,7 +68,7 @@ class JournalsController < ApplicationController
   end
 
   #Delete a journal
-  delete '/journals/:username/:journal_id' do
+  delete '/journals/:journal_id' do
     @user = current_user
     @journal = Journal.find_by(id: params[:journal_id])
     if logged_in? && journal_access_valid?

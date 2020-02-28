@@ -9,7 +9,7 @@
       <input type="text" id="journal_title" name="journal[title]" value="<%=@journal.title%>">
     </form>
 
-    <form method="post" action="/journals/<%=@user.username%>/<%=@journal.id%>">
+    <form method="post" action="/journals/<%=@journal.id%>">
       <input id="hidden" type="hidden" name="_method" value="DELETE">
       <p style="text-align: center;"><input class="button button-clear" style="color: red;" type="submit" value="Delete Journal"></p>
     </form>
