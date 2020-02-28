@@ -56,24 +56,4 @@ class EntriesController < ApplicationController
     end
   end
 
-  helpers do 
-
-    def journal_access_valid?
-      if !!@journal && @journal.user == current_user
-        true
-      else
-        false
-      end
-    end
-
-    def redirect_user_to_self
-      redirect "/user/#{current_user.id}/journals"
-    end
-
-    def redirect_to_login
-      redirect '/login'
-    end
-
-  end
-
 end

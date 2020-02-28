@@ -11,17 +11,4 @@ class PromptsController < ApplicationController
     redirect "/journals/#{@journal.id}/write"
   end
 
-
-  helpers do 
-
-    def journal_access_valid?
-      if !!@journal && @journal.user == current_user
-        true
-      else
-        false
-      end
-    end
-
-  end
-
 end

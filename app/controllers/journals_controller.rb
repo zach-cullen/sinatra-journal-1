@@ -80,14 +80,4 @@ class JournalsController < ApplicationController
     redirect "user/#{@user.id}/journals"
   end
 
-  helpers do 
-    # make sure the journal exists and that it belongs to the current user
-    def journal_access_valid?
-      if !!@journal && @journal.user == current_user
-        true
-      else
-        false
-      end
-    end
-  end
 end

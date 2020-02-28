@@ -23,6 +23,22 @@ class ApplicationController < Sinatra::Base
       !!session[:user_id]
     end
 
+    def journal_access_valid?
+      if !!@journal && @journal.user == current_user
+        true
+      else
+        false
+      end
+    end
+
+    def redirect_user_to_self
+      redirect "/user/#{current_user.id}/journals"
+    end
+
+    def redirect_to_login
+      redirect '/login'
+    end
+
   #   def find_user_or_logout
   #     #finds a user via route parameters unless they are not logged in
   #     user = get_user
