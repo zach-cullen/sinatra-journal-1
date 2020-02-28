@@ -1,6 +1,6 @@
 class JournalsController < ApplicationController
 
-  post '/journals/:username' do
+  post '/journals/:id' do
     # @user = find_user_or_logout
     # #create new journal at user
     # @journal = @user.journals.create(params[:journal])
