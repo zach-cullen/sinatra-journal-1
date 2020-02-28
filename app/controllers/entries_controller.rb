@@ -25,7 +25,14 @@ class EntriesController < ApplicationController
 
   #Create new entry
   post '/entries' do
-
+    @prompt = Prompt.find_by(id: params[:prompt][:id].to_i)
+    @journal = @prompt.journal
+    if logged_in? && journal_access_valid?
+      @prompt.entries.create(params[:entry])
+    else
+      redirect '/login'
+    end
+    redirect "/journals/#{@journal.id}/write"
   end
 
   #Update entry
