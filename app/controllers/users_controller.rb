@@ -50,7 +50,17 @@ class UsersController < ApplicationController
   
   get '/user/:user_id' do
     @user = current_user
-    erb :account
+    #make sure logged in
+    if logged_in? && @user.id == params[:user_id].to_i
+      binding.pry
+      erb :account
+    elsif logged_in?
+      binding.pry
+      redirect "/user/#{@user.id}"
+    else
+      flash[:alert] = "You must be logged in to view this content"
+      redirect 'login'
+    end
   end
 
   get '/logout' do
