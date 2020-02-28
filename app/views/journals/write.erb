@@ -5,14 +5,16 @@
   <div class="readable-column">
     <% @journal.prompts.each do |prompt| %>
       <% if !prompt.entry_made_today %>
-        <form method="POST" action="/entries/<%=@user.username%>/<%=@journal.id%>/<%=prompt.id%>">
+        <form method="POST" action="/entries">
         <h5><%= prompt.title %><input style="float: right; height: 3.2rem; line-height: 3.2rem;"  type="submit" value="Save"></h5>
           <textarea name="entry[text]" placeholder="Start writing..."></textarea>
+          <input type="hidden" name="prompt[id]" value="<%= prompt.id %>">
         </form>
       <% else %>
         <h5><%= prompt.title %></h5>
-        <p style="white-space: pre-line"><%= prompt.entry_made_today.text %></p>
-        <h6><a href="/entries/<%=@user.username%>/<%=@journal.id%>/<%=prompt.entry_made_today.id%>/edit">Edit Entry</a></h6>
+        <% entry = prompt.entry_made_today %>
+        <p style="white-space: pre-line"><%= entry.text %></p>
+        <h6><a href="/entries/<%=entry.id%>/edit">Edit Entry</a></h6>
       <% end %>
       <br>
     <% end %>
