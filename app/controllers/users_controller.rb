@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     @user = current_user
     #make sure logged in and prevent from viewing other accounts
     if logged_in? && @user.id == params[:user_id].to_i
-      erb :account
+      erb :'users/account'
     elsif logged_in?
       redirect "/user/#{@user.id}"
     else
