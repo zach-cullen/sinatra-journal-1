@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     if user && user.authenticate(params[:user][:password])
       #start session and redirect to user account
       session[:user_id] = user.id
-      redirect "/user/#{user.id}"
+      redirect "/user/#{user.id}/journals"
     elsif !user
       #if user is not found, ask to sign up
       flash[:alert] = 'No user found with that email address, please <a href="/signup">sign up</a> or try again.'
@@ -53,6 +53,18 @@ class UsersController < ApplicationController
     #make sure logged in and prevent from viewing other accounts
     if logged_in? && @user.id == params[:user_id].to_i
       erb :'users/account'
+    elsif logged_in?
+      redirect "/user/#{@user.id}"
+    else
+      flash[:alert] = "You must be logged in to view this content"
+      redirect 'login'
+    end
+  end
+
+  get '/user/:user_id/journals' do
+    @user = current_user
+    if logged_in? && @user.id == params[:user_id].to_i
+      erb :'users/myjournals'
     elsif logged_in?
       redirect "/user/#{@user.id}"
     else
