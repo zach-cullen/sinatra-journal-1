@@ -23,4 +23,26 @@ class EntriesController < ApplicationController
   #   redirect "/journals/#{@user.username}/#{@journal.id}/write"
   # end
 
+  #Create new entry
+  post '/entries' do
+
+  end
+
+  #Update entry
+  patch '/entries/:entry_id' do
+
+  end 
+
+  helpers do 
+
+    def journal_access_valid?
+      if !!@journal && @journal.user == current_user
+        true
+      else
+        false
+      end
+    end
+
+  end
+
 end
