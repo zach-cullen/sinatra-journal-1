@@ -14,7 +14,8 @@
       <a class="navigation-title" href="/">JournalQ</a>
       <div class="float-right">
         <% if !!@user %>
-          <a class="navigation-list" href="/user/<%=@user.username%>">Account</a>
+          <a class="navigation-list" href="/user/<%=@user.id%>/journals">My Journals</a>
+          <a class="navigation-list" href="/user/<%=@user.id%>">Account</a>
           <a class="navigation-list" href="/logout">Logout</a>
         <% else %>
           <a class="navigation-list" href="/signup">Sign Up</a>
