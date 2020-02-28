@@ -75,9 +75,10 @@ class JournalsController < ApplicationController
       @journal.destroy
     elsif !logged_in?
       flash[:alert] = "You must be logged in to view this content"
-      redirect 'login'
+      redirect_to_login
+    else
+      redirect_user_to_self
     end
-    redirect "user/#{@user.id}/journals"
   end
 
 end
