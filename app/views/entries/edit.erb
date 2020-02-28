@@ -2,8 +2,8 @@
 <div class="row">
   <div class="column column-20"></div>
   <div class="readable-column">
-    <form method="POST" action="/entries/<%=@user.username%>/<%=@journal.id%>/<%=@entry.id%>">
-      <h5><%= @entry.prompt.title %><input style="float: right;" type="submit" value="Save Changes"></h5>
+    <form method="POST" action="/entries/<%=@entry.id%>">
+      <h5><%= @entry.prompt.title %><input type="submit" style="float: right; height: 3.2rem; line-height: 3.2rem;" value="Save Changes"></h5>
       <input id="hidden" type="hidden" name="_method" value="PATCH">
       <textarea name="entry[text]"><%= @entry.text %></textarea>
     </form>
