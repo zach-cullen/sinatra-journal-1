@@ -2,7 +2,14 @@ class JournalsController < ApplicationController
 
   #Create new journal
   post '/journals' do
-
+    @user = current_user
+    if logged_in? 
+      @user.journals.create(params[:journal])
+      redirect "/user/#{@user.id}/journals"
+    else
+      flash[:alert] = "You must be logged in to view this content"
+      redirect 'login'
+    end
   end
 
   #Read a journal
