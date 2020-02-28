@@ -7,5 +7,10 @@
       <input id="hidden" type="hidden" name="_method" value="PATCH">
       <textarea name="entry[text]"><%= @entry.text %></textarea>
     </form>
+    
+    <form method="post" action="/entries/<%=@entry.id%>">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <p style="text-align: center;"><input class="button button-clear" style="color: red;" type="submit" value="Delete Entry"></p>
+  </form>
   </div>
 </div>
