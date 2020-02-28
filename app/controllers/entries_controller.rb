@@ -42,6 +42,20 @@ class EntriesController < ApplicationController
     end
   end 
 
+  #Delete entry
+  delete '/entries/:entry_id' do
+    @entry = Entry.find_by(id: params[:entry_id])
+    @journal = @entry.prompt.journal
+    if logged_in? && journal_access_valid?
+      @entry.destroy
+      redirect "/journals/#{@journal.id}/write"
+    elsif !logged_in?
+      redirect '/login'
+    else
+      redirect "/user/#{current_user.id}/journals"
+    end
+  end
+
   helpers do 
 
     def journal_access_valid?
