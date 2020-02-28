@@ -9,10 +9,8 @@
           <a class="button button-clear" href="/journals/<%=journal.id%>/write">Write</a>
           <br> 
           <a class="button button-clear" href="/journals/<%=journal.id%>">Read</a>
-          <form method="post" action="/journals/<%=@user.username%>/<%=journal.id%>">
-            <input id="hidden" type="hidden" name="_method" value="Delete">
-            <input class="button button-clear" type="submit" value="Delete">
-          </form>
+          <br>
+          <a class="button button-clear" href="/journals/<%=journal.id%>/edit">Edit</a>
         </div>
       </div>
     <% end %>
