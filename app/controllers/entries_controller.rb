@@ -43,7 +43,7 @@ class EntriesController < ApplicationController
       erb :'entries/edit'
     elsif !logged_in?
       flash[:alert] = "You must be logged in to view this content"
-      redirect 'login'
+      redirect '/login'
     else
       redirect "/user/#{current_user.id}/journals"
     end
@@ -51,7 +51,16 @@ class EntriesController < ApplicationController
 
   #Update entry
   patch '/entries/:entry_id' do
-    binding.pry
+    @entry = Entry.find_by(id: params[:entry_id])
+    @journal = @entry.prompt.journal
+    if logged_in? && journal_access_valid?
+      @entry.update(params[:entry])
+      redirect "/journals/#{@journal.id}/write"
+    elsif !logged_in? 
+      redirect '/login'
+    else
+      redirect "/user/#{current_user.id}/journals"
+    end
   end 
 
   helpers do 
