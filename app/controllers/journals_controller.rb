@@ -67,10 +67,15 @@ class JournalsController < ApplicationController
   end
 
   delete '/journals/:username/:journal_id' do
-    # # @user = find_user_or_logout
-    # # @journal = find_journal_or_redirect
-    # @journal.destroy
-    # redirect "/user/#{@user.username}"
+    @user = current_user
+    @journal = Journal.find_by(id: params[:journal_id])
+    if logged_in? && journal_access_valid?
+      @journal.destroy
+    elsif !logged_in?
+      flash[:alert] = "You must be logged in to view this content"
+      redirect 'login'
+    end
+    redirect "user/#{@user.id}/journals"
   end
 
   helpers do 
