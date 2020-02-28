@@ -27,7 +27,16 @@ class JournalsController < ApplicationController
   get '/journals/:journal_id/write' do 
     # @user = find_user_or_logout
     # @journal = find_journal_or_redirect
-    erb :'journals/write'
+    @user = current_user
+    @journal = Journal.find_by(id: params[:journal_id])
+    if logged_in? && journal_access_valid?
+      erb :'journals/write'
+    elsif logged_in?
+      redirect "user/#{@user.id}/journals"
+    else
+      flash[:alert] = "You must be logged in to view this content"
+      redirect 'login'
+    end
   end
 
   delete '/journals/:username/:journal_id' do
