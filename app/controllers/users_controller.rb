@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     if user && user.authenticate(params[:user][:password])
       #start session and redirect to user account
       session[:user_id] = user.id
-      redirect "/user/#{user.username}"
+      redirect "/user/#{user.id}"
     elsif !user
       #if user is not found, ask to sign up
       flash[:alert] = 'No user found with that email address, please <a href="/signup">sign up</a> or try again.'
@@ -48,8 +48,8 @@ class UsersController < ApplicationController
   end
 
   
-  get '/user/:username' do
-    @user = find_user_or_logout
+  get '/user/:user_id' do
+    @user = current_user
     erb :account
   end
 
